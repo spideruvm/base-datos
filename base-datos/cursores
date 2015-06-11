@@ -1,0 +1,19 @@
+set serveroutput on;
+declare
+algo varchar2(120);
+begin
+dbms_output.put_line('probaremos un cursor implicito');
+--cursor implicito
+select NOMBRE into algo from USUARIO1 WHERE id_usuario1=1;
+dbms_output.put_line('la memria global eta '|| algo);
+end;
+/
+--CURSOR EXPLICITO PARA VARIAS FILAS
+DECLARE
+CURSOR CUR_USUARIO1 IS SELECT * FROM USUARIO1;
+BEGIN
+FOR REC_USUARIO IN CUR_USUARIO1 LOOP
+DBMS_OUTPUT.PUT_LINE('EN ESTE MOMENTO ESTA EN MEMROAI: '||REC_USUARIO.NOMBRE);
+END LOOP;
+END;
+/
